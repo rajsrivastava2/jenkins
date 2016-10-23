@@ -24,29 +24,16 @@
  */
 package hudson;
 
-import com.google.common.collect.ImmutableSet;
+import static java.util.logging.Level.WARNING;
+import static org.apache.commons.io.FilenameUtils.getBaseName;
 import hudson.PluginManager.PluginInstanceStore;
 import hudson.model.AdministrativeMonitor;
 import hudson.model.Api;
 import hudson.model.ModelObject;
-import jenkins.YesNoMaybe;
-import jenkins.model.Jenkins;
 import hudson.model.UpdateCenter;
 import hudson.model.UpdateSite;
 import hudson.util.VersionNumber;
-import org.jvnet.localizer.ResourceBundleHolder;
-import org.kohsuke.stapler.HttpResponse;
-import org.kohsuke.stapler.HttpResponses;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
-import org.kohsuke.stapler.export.Exported;
-import org.kohsuke.stapler.export.ExportedBean;
-import org.kohsuke.stapler.interceptor.RequirePOST;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.LogFactory;
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,7 +46,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -69,8 +55,23 @@ import java.util.jar.Manifest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.util.logging.Level.WARNING;
-import static org.apache.commons.io.FilenameUtils.getBaseName;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+
+import jenkins.YesNoMaybe;
+import jenkins.model.Jenkins;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.LogFactory;
+import org.kohsuke.stapler.HttpResponse;
+import org.kohsuke.stapler.HttpResponses;
+import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.export.Exported;
+import org.kohsuke.stapler.export.ExportedBean;
+import org.kohsuke.stapler.interceptor.RequirePOST;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
  * Represents a Jenkins plug-in and associated control information
